@@ -12,7 +12,7 @@ first_20_pages = []
 first_20_pages.append(soup1)
 
 #scraping the first 20 pages starting from the newest post, will give 500 posts in total
-for i in range(0, 20):
+for i in range(0, 19):
     next_page_link = list(first_20_pages[i].find("span", class_="next-button").children)[0]
     href = next_page_link.attrs['href']
     newPage = requests.get(str(href), headers = {'User-agent': 'your bot 0.1'})
@@ -25,7 +25,10 @@ for i in range(0, 20):
 #inputting each post into a dataframe
 df = pd.DataFrame(data=None, columns=['Post_title', 'Karma', 'Number_of_comments', 'Day_of_week', 'Hour'])
 
+i = 0
 for page in first_20_pages:
+    i += 1
+    print("\n\n----------------------------------------" + "PAGE " + str(i) + " ----------------------------------------\n")
     for post in page.find_all('div', class_='thing'):
         title = post.find('a', class_="title").get_text()
 
@@ -49,13 +52,12 @@ for page in first_20_pages:
 
         df = df._append(new_df_row, ignore_index=True)
 
-        print("PAGE 1: \n--------------------------------")
         print("POST TITLE:", title)
         print("KARMA:", karma)
         print("DAY OF WEEK:", dayPosted)
         print("HOUR:", hourPosted)
         print("NUMBER OF COMMENTS:", nrOfComments)
-        print("\n------------------------\n")
+        print()
 
 #Outputting dataframe to Excel file
 new_excel = subreddit + ".xlsx"
