@@ -1,21 +1,21 @@
+import functions as fun
 import pandas as pd
 from matplotlib import pyplot as plt
 import numpy as np
 
 #Reading the data:
-subreddit = "zizek" #this is the input that should be changed accordingly
-df = pd.read_excel("ExcelFiles/" + subreddit + ".xlsx", index_col=0)
+subreddit = "AskReddit" #this is the input that should be changed accordingly
+df = fun.read_data(subreddit)
 
 #Data cleaning:
-df['Karma'] = df['Karma'].astype(int)
-df['Number_of_comments'] = df['Number_of_comments'].astype(int)
+df = fun.convertColumnsOf_DF_to_Int(df, ['Karma', 'Number_of_comments'])
 
 #Grouping the data:
 DAYS_OF_WEEK = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 
 df_daysOfWeek = df.groupby("Day_of_week")[['Karma', 'Number_of_comments']].mean()
 df_daysOfWeek = df_daysOfWeek.reindex(DAYS_OF_WEEK)
-#print(df_daysOfWeek)
+print(df_daysOfWeek)
 
 #Plotting the data:
 BAR_WIDTH = 0.3

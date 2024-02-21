@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import requests
 
 
-subreddit = "Robursa" #variable to be inputted later
+subreddit = "AskReddit" #variable to be inputted later
 URL = r"https://old.reddit.com/r/" + subreddit + '/new/'
 firstPage = requests.get(URL, headers = {'User-agent': 'your bot 0.1'})
 soup1 = BeautifulSoup(firstPage.text, 'html.parser')
@@ -33,6 +33,9 @@ for page in first_20_pages:
         title = post.find('a', class_="title").get_text()
 
         karma = post.find('div', class_="score unvoted").get_text()
+        #in case karma is not shown on that subreddit, it will enter a dot
+        if not karma.isnumeric():
+            karma = 0
 
         nrOfComments = post.find('li', class_="first").get_text()[
                        : post.find('li', class_="first").get_text().find("c")]
