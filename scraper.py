@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import requests
 
 
-subreddit = "zizek" #variable to be inputted later
+subreddit = "Robursa" #variable to be inputted later
 URL = r"https://old.reddit.com/r/" + subreddit + '/new/'
 firstPage = requests.get(URL, headers = {'User-agent': 'your bot 0.1'})
 soup1 = BeautifulSoup(firstPage.text, 'html.parser')
@@ -61,8 +61,7 @@ for page in first_20_pages:
 
 #Outputting dataframe to Excel file
 new_excel = subreddit + ".xlsx"
-df.to_excel(new_excel)
+df.to_excel("ExcelFiles/" + new_excel)
 print("Data written to Excel file successfuly.")
-
 
 
