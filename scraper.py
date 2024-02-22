@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import requests
 
 
-subreddit = "AskReddit" #variable to be inputted later
+subreddit = "CriticalTheory" #variable to be inputted later
 URL = r"https://old.reddit.com/r/" + subreddit + '/new/'
 firstPage = requests.get(URL, headers = {'User-agent': 'your bot 0.1'})
 soup1 = BeautifulSoup(firstPage.text, 'html.parser')
@@ -12,7 +12,7 @@ first_20_pages = []
 first_20_pages.append(soup1)
 
 #scraping the first 20 pages starting from the newest post, will give 500 posts in total
-for i in range(0, 19):
+for i in range(0, 20):
     next_page_link = list(first_20_pages[i].find("span", class_="next-button").children)[0]
     href = next_page_link.attrs['href']
     newPage = requests.get(str(href), headers = {'User-agent': 'your bot 0.1'})
@@ -45,12 +45,14 @@ for page in first_20_pages:
         timePosted = post.find('time').attrs['title']
         dayPosted = timePosted[0:3].strip()
         hourPosted = timePosted[11:16].strip(":")
+        timeZone = timePosted[-3:]
 
         new_df_row = {'Post_title': title,
                       'Karma': karma,
                       'Number_of_comments': nrOfComments,
                       'Day_of_week': dayPosted,
-                      'Hour': hourPosted
+                      'Hour': hourPosted,
+                      'Time_zone:': timeZone
                       }
 
         df = df._append(new_df_row, ignore_index=True)
@@ -60,6 +62,7 @@ for page in first_20_pages:
         print("DAY OF WEEK:", dayPosted)
         print("HOUR:", hourPosted)
         print("NUMBER OF COMMENTS:", nrOfComments)
+        print("TIME ZONE:", timeZone)
         print()
 
 #Outputting dataframe to Excel file
