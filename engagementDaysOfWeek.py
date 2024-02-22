@@ -4,7 +4,7 @@ from matplotlib import pyplot as plt
 import numpy as np
 
 #Reading the data:
-subreddit = "AskReddit" #this is the input that should be changed accordingly
+subreddit = "CriticalTheory" #this is the input that should be changed accordingly
 df = fun.read_data(subreddit)
 
 #Data cleaning:

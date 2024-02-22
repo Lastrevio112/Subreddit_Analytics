@@ -1,6 +1,6 @@
 import functions as fun
 
-subreddit = "zizek"
+subreddit = "Romania"
 df = fun.read_data(subreddit)
 
 dict_frequencies = {}
