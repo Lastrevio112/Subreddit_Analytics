@@ -1,7 +1,7 @@
 # Subreddit_Analytics
 A web scraper developed in Python that showcases analytics about subreddits from Reddit.
 
-#HOW TO USE:
+# HOW TO USE:
 
 1. Run scraper.py and enter the name of a subreddit of choice. This script will create an Excel file with information about the last 500 posts of that subreddit (title of the post, karma, number of comments, day of the week it was posted, the hour it was posted and the timezone of that hour).
 
