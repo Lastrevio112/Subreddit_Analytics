@@ -1,6 +1,6 @@
 import functions as fun
 
-subreddit = "Romania"
+subreddit = input("Please enter a subreddit to analyze (that was already scraped): ")
 df = fun.read_data(subreddit)
 
 dict_frequencies = {}

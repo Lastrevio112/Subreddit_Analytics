@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import requests
 
 
-subreddit = "CriticalTheory" #variable to be inputted later
+subreddit = input("Please enter a subreddit to scrape: ") #variable to be inputted from keyboard
 URL = r"https://old.reddit.com/r/" + subreddit + '/new/'
 firstPage = requests.get(URL, headers = {'User-agent': 'your bot 0.1'})
 soup1 = BeautifulSoup(firstPage.text, 'html.parser')

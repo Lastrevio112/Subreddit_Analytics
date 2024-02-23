@@ -5,7 +5,7 @@ import numpy as np
 from datetime import datetime
 
 #Reading the data:
-subreddit = "CriticalTheory" #this is the input that should be changed accordingly
+subreddit = input("Please enter a subreddit to analyze (that was already scraped): ")
 df = fun.read_data(subreddit)
 
 #Data cleaning:

@@ -5,7 +5,7 @@ from matplotlib import pyplot as plt
 import numpy as np
 
 #Reading data from excel file:
-subreddit = "Romania" #this is the input that should be changed accordingly
+subreddit = input("Please enter a subreddit to analyze (that was already scraped): ")
 df = fun.read_data(subreddit)
 
 #Cleaning the data
